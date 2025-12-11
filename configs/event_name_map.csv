@@ -1,0 +1,16 @@
+login,login
+Login,login
+logged_in,login
+user_login,login
+feature_use,feature_use
+feature_used,feature_use
+used_feature,feature_use
+page_view,page_view
+pageview,page_view
+viewed_page,page_view
+export_data,export_data
+data_export,export_data
+exported,export_data
+invite_sent,invite_sent
+sent_invite,invite_sent
+invited_user,invite_sent

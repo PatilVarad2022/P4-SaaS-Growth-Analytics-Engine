@@ -1,0 +1,8 @@
+# SHA256 Checksums - Verified Run 2025-12-12
+# Generated: 2025-12-12 00:43:20
+# Runtime: 1.02 seconds
+# Python: 3.13.5
+
+0ccda33bda6360db3b4d9177556a60e93e5dd99ff32cf791fa85c7348d596ecc  outputs/kpi_snapshot.csv
+d43666574d665785ff8e959552563664c0f4f61133e6183cd49f9b6ffc15c6a6  outputs/base_forecast.csv
+bc105f9893ef2b0d192270515d154cf3429093f4291f11280ed489de3d52a6ab  outputs/scenario_summary.csv

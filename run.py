@@ -55,23 +55,23 @@ def main():
         # Step 1: Load Data
         print("\n[1/5] Loading sample data...")
         raw_data = load_sample_data()
-        print(f"      ✓ Loaded {len(raw_data['customers'])} customers, "
+        print(f"      OK - Loaded {len(raw_data['customers'])} customers, "
               f"{len(raw_data['subscriptions'])} subscriptions")
         
         # Step 2: Transform
         print("\n[2/5] Cleaning and transforming data...")
         clean_data = clean_and_transform(raw_data, args.config)
-        print(f"      ✓ Transformed data ready for analytics")
+        print(f"      OK - Transformed data ready for analytics")
         
         # Step 3: Run Simulation Engine
         print("\n[3/5] Running growth simulation engine...")
         simulation_results = run_growth_simulation(clean_data, args.config)
-        print(f"      ✓ Simulated {simulation_results['months_projected']} months")
+        print(f"      OK - Simulated {simulation_results['months_projected']} months")
         
         # Step 4: Calculate KPIs
         print("\n[4/5] Calculating KPIs and metrics...")
         kpis = calculate_kpis(clean_data, simulation_results, args.config)
-        print(f"      ✓ Calculated {len(kpis)} key metrics")
+        print(f"      OK - Calculated {len(kpis)} key metrics")
         
         # Step 5: Export Outputs
         print("\n[5/5] Exporting outputs...")
@@ -81,7 +81,7 @@ def main():
             kpis=kpis,
             output_dir=args.output_dir
         )
-        print(f"      ✓ Exported to {args.output_dir}/")
+        print(f"      OK - Exported to {args.output_dir}/")
         
         print("\n" + "=" * 70)
         print("SUCCESS! Pipeline completed.")

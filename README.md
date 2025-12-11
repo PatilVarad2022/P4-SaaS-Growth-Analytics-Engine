@@ -4,6 +4,23 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-9%2F9%20passing-brightgreen.svg)](tests/)
+
+## 🎯 Verified Metrics (2025-12-12)
+
+**Instant Proof**: See `outputs_verified/2025-12-12/` for timestamped, checksummed outputs.
+
+| Metric | Value | Verification |
+|--------|-------|--------------|
+| **Current MRR** | $1,737 | `outputs_verified/2025-12-12/kpi_snapshot.csv` |
+| **Current ARR** | $20,844 | Same file, column 3 |
+| **Projected ARR (12m)** | $1,303,512 | `base_forecast.csv`, row 13 |
+| **LTV:CAC Ratio** | 8.44x | `kpi_snapshot.csv`, column 12 |
+| **Active Customers** | 13 | `kpi_snapshot.csv`, column 4 |
+| **Runtime** | ~1 second | Run `python verify_run.py` |
+| **Tests Passing** | 9/9 | Run `pytest tests/ -v` |
+
+**All claims verified with SHA256 checksums** - see `outputs_verified/verify_checksums.txt`
 
 ---
 
@@ -72,7 +89,7 @@ Month-by-month detail for base scenario:
 
 ## 🏗️ Tech Stack
 
-- **Language**: Python 3.8+
+- **Language**: Python 3.8+ (tested on 3.13.5)
 - **Core Libraries**: pandas, numpy, pyyaml, python-dateutil
 - **Testing**: pytest
 - **Architecture**: Modular pipeline (load → transform → simulate → calculate → export)

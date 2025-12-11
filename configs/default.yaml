@@ -1,5 +1,8 @@
 # Default configuration for P4 SaaS Growth Analytics Engine
 
+# Reproducibility
+random_seed: 42                # Fixed seed for deterministic runs
+
 # Simulation Parameters
 base_churn_rate: 0.05          # 5% monthly churn rate (base scenario)
 estimated_cac: 500             # Customer Acquisition Cost estimate ($)

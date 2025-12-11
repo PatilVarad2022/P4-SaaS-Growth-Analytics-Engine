@@ -53,11 +53,11 @@ def export_outputs(clean_data, simulation_results, kpis, output_dir):
     # 6. Create summary report
     create_summary_report(kpis, simulation_results, output_path)
     
-    print(f"      ✓ base_forecast.csv ({len(base_forecast)} rows)")
-    print(f"      ✓ scenario_summary.csv ({len(scenario_summary)} rows)")
-    print(f"      ✓ kpi_snapshot.csv (1 row, {len(kpis)} metrics)")
-    print(f"      ✓ customer_metrics.csv ({len(customer_metrics)} customers)")
-    print(f"      ✓ historical_mrr.csv ({len(historical)} months)")
+    print(f"      OK - base_forecast.csv ({len(base_forecast)} rows)")
+    print(f"      OK - scenario_summary.csv ({len(scenario_summary)} rows)")
+    print(f"      OK - kpi_snapshot.csv (1 row, {len(kpis)} metrics)")
+    print(f"      OK - customer_metrics.csv ({len(customer_metrics)} customers)")
+    print(f"      OK - historical_mrr.csv ({len(historical)} months)")
 
 
 def create_summary_report(kpis, simulation_results, output_path):
@@ -111,4 +111,4 @@ def create_summary_report(kpis, simulation_results, output_path):
     with open(output_path / 'summary_report.txt', 'w') as f:
         f.write(report_text)
     
-    print(f"      ✓ summary_report.txt")
+    print(f"      OK - summary_report.txt")

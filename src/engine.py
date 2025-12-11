@@ -7,6 +7,9 @@ import numpy as np
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
+# Set random seed for reproducibility
+np.random.seed(42)
+
 
 def run_growth_simulation(clean_data, config_path):
     """

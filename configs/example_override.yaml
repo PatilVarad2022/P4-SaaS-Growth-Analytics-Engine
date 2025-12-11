@@ -1,0 +1,28 @@
+# Example Override Configuration
+# Usage: python run.py --config configs/example_override.yaml
+
+# Override base churn rate for sensitivity analysis
+base_churn_rate: 0.08          # 8% monthly churn (higher than default)
+
+# Override CAC estimate
+estimated_cac: 750             # Higher CAC scenario
+
+# Override activity weights to emphasize support tickets
+activity_weights:
+  login: 1
+  feature_use: 3               # Increased weight
+  support_ticket: -10          # Stronger negative signal
+  upgrade: 15                  # Stronger positive signal
+  downgrade: -12
+
+# More aggressive scenario modifiers
+scenarios:
+  optimistic:
+    growth_multiplier: 2.0     # Double growth rate
+    churn_multiplier: 0.5      # Half the churn
+  
+  pessimistic:
+    growth_multiplier: 0.3     # 70% lower growth
+    churn_multiplier: 2.0      # Double the churn
+
+# All other parameters inherit from default.yaml

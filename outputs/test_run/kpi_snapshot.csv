@@ -1,0 +1,2 @@
+snapshot_date,current_mrr,current_arr,active_customers,avg_mrr_per_customer,mrr_growth_rate_monthly,projected_arr_12m,arr_growth_yoy_projected,avg_revenue_per_customer,estimated_ltv,estimated_cac,ltv_cac_ratio,high_risk_customers,churn_risk_pct,total_customers_analyzed
+2025-12-12,1737,20844,13,133.62,41.15,1303511.69,6153.65,211.0,4220.0,500,8.44,3,15.0,20

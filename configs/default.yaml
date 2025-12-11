@@ -1,0 +1,42 @@
+# Default configuration for P4 SaaS Growth Analytics Engine
+
+# Simulation Parameters
+base_churn_rate: 0.05          # 5% monthly churn rate (base scenario)
+estimated_cac: 500             # Customer Acquisition Cost estimate ($)
+projection_months: 12          # Number of months to project forward
+
+# Activity Scoring Weights
+activity_weights:
+  login: 1                     # Weight for login events
+  feature_use: 2               # Weight for feature usage events
+  support_ticket: -5           # Negative weight for support tickets (friction indicator)
+  upgrade: 10                  # Weight for upgrade events
+  downgrade: -8                # Negative weight for downgrades
+
+# RFM Segmentation Bins
+rfm:
+  recency_bins: [30, 60, 90]   # Days since last activity (thresholds)
+  frequency_bins: [1, 3, 5]    # Number of interactions (thresholds)
+  monetary_bins: [50, 100, 500] # Revenue in $ (thresholds)
+
+# Customer Segmentation
+segmentation:
+  revenue_percentiles: [0.5, 0.8]  # Low < 50%, Mid < 80%, Top > 80%
+  churn_risk_days: 30              # Days of inactivity = high risk
+  activity_threshold_low: 0        # Activity score below this = at risk
+
+# Scenario Modifiers (relative to base)
+scenarios:
+  optimistic:
+    growth_multiplier: 1.5     # 50% higher growth rate
+    churn_multiplier: 0.8      # 20% lower churn rate
+  
+  pessimistic:
+    growth_multiplier: 0.5     # 50% lower growth rate
+    churn_multiplier: 1.5      # 50% higher churn rate
+
+# Data Quality Thresholds
+data_quality:
+  min_customers: 10            # Minimum customers required
+  min_months_history: 3        # Minimum months of historical data
+  max_missing_pct: 0.1         # Maximum 10% missing values allowed

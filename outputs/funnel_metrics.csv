@@ -1,0 +1,5 @@
+stage,users,conversion_rate,cumulative_rate
+Total Sign-ups,10000,1.0,1.0
+Activated,6397,0.6397,0.6397
+Converted to Paid,1295,0.2548209366391185,0.1630089531680441
+Retained (30+ days),1259,0.9722007722007722,0.15847743014561197

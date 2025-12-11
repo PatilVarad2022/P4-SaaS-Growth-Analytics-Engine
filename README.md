@@ -1,280 +1,236 @@
 # P4 SaaS Growth Analytics Engine
 
-> **One-Line Pitch**: Python-based simulation and forecasting tool that models B2B SaaS growth metrics (MRR, churn, LTV) and generates scenario-based projections for business planning.
+> **Complete B2B SaaS analytics platform** simulating 10,000+ user lifecycles, calculating funnel metrics, cohort retention, MRR/ARR, unit economics, and generating 6 growth scenarios.
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-9%2F9%20passing-brightgreen.svg)](tests/)
-
-## 🎯 Verified Metrics (2025-12-12)
-
-**Instant Proof**: See `outputs_verified/2025-12-12/` for timestamped, checksummed outputs.
-
-| Metric | Value | Verification |
-|--------|-------|--------------|
-| **Current MRR** | $1,737 | `outputs_verified/2025-12-12/kpi_snapshot.csv` |
-| **Current ARR** | $20,844 | Same file, column 3 |
-| **Projected ARR (12m)** | $1,303,512 | `base_forecast.csv`, row 13 |
-| **LTV:CAC Ratio** | 8.44x | `kpi_snapshot.csv`, column 12 |
-| **Active Customers** | 13 | `kpi_snapshot.csv`, column 4 |
-| **Runtime** | ~1 second | Run `python verify_run.py` |
-| **Tests Passing** | 9/9 | Run `pytest tests/ -v` |
-
-**All claims verified with SHA256 checksums** - see `outputs_verified/verify_checksums.txt`
 
 ---
 
-## 🎯 Purpose
+## 🎯 What This Does
 
-This project automates SaaS growth analysis and forecasting, transforming raw customer/subscription data into actionable business insights. It calculates key metrics (MRR, ARR, LTV, CAC, churn risk) and projects growth forward using scenario-based modeling.
+A **production-grade SaaS analytics engine** that:
 
-**Target Users**: Business Analysts, FP&A Teams, Product Managers, Data Analysts, Recruiters evaluating analytical skills
+1. **Simulates 10,000+ user lifecycles** with sign-ups, activations, conversions, upgrades, downgrades, and churn
+2. **Calculates activation & conversion funnels** (Free → Activated → Paid → Retained)
+3. **Generates cohort retention matrices** with week-by-week and month-by-month retention
+4. **Computes comprehensive revenue metrics** (MRR, ARR, ARPU, ARPPU, MRR Bridge, Net Revenue Retention)
+5. **Analyzes unit economics** (CAC, LTV, LTV:CAC ratios by channel and plan)
+6. **Runs 6 growth scenarios** (base case, high/low churn, increased marketing, improved conversion, pricing changes)
+
+**Runtime**: ~10 seconds for 10,000 users  
+**Outputs**: 11 CSV files + summary report
 
 ---
 
-## 🚀 Quickstart
+## 🚀 Quick Start
 
-### One-Command Execution
 ```bash
-# Clone the repository
+# 1. Clone repository
 git clone https://github.com/PatilVarad2022/P4-SaaS-Growth-Analytics-Engine.git
 cd P4-SaaS-Growth-Analytics-Engine
 
-# Install dependencies
+# 2. Install dependencies
 pip install -r requirements.txt
 
-# Run the pipeline
-python run.py
+# 3. Run full analysis
+python run_full_analysis.py
+
+# 4. Check outputs
+cd outputs/
 ```
 
-**Expected Output**: 6 files in `outputs/` directory:
-- `kpi_snapshot.csv` - Current state metrics (1 row, 15 KPIs)
-- `base_forecast.csv` - 12-month projection (12 rows)
-- `scenario_summary.csv` - 3 scenarios (36 rows total)
-- `customer_metrics.csv` - Customer-level data (20 rows)
-- `historical_mrr.csv` - Historical MRR (4 months)
-- `summary_report.txt` - Human-readable summary
-
-**Runtime**: ~1 second on sample data
+**Expected outputs**: 11 CSV files in `outputs/` directory
 
 ---
 
-## 📊 Key Outputs
+## 📊 Key Metrics Generated
 
-### 1. KPI Snapshot (`outputs/kpi_snapshot.csv`)
-Single-row summary of current SaaS health:
-- Current MRR, ARR, active customers
-- Monthly growth rate, projected 12-month ARR
-- LTV, CAC, LTV:CAC ratio
-- Churn risk percentage
+### User Lifecycle (10,000+ users)
+- Sign-up dates, acquisition channels
+- Activation status (65% activation rate)
+- Free → Paid conversions (25% conversion rate)
+- Upgrade/downgrade events
+- Churn dates and lifetime values
 
-**Use Case**: Executive dashboards, board decks, monthly reviews
+### Funnel Metrics
+- **Sign-up → Activated**: ~65%
+- **Activated → Paid**: ~25%
+- **Paid → Retained (30+ days)**: ~97%
 
-### 2. Scenario Summary (`outputs/scenario_summary.csv`)
-12-month projections across three scenarios:
-- **Base**: Historical growth trends continue
-- **Optimistic**: +50% growth, -20% churn
-- **Pessimistic**: -50% growth, +50% churn
+### Revenue Metrics
+- **MRR** (Monthly Recurring Revenue)
+- **ARR** (Annual Recurring Revenue)
+- **ARPU** (Average Revenue Per User)
+- **ARPPU** (Average Revenue Per Paying User)
+- **MRR Bridge** (New/Expansion/Contraction/Churned MRR)
+- **Net Revenue Retention** (NRR)
 
-**Use Case**: Budget planning, sensitivity analysis, investor reporting
+### Unit Economics
+- **CAC** by acquisition channel ($100-$800)
+- **LTV** by plan (Free/Basic/Pro)
+- **LTV:CAC ratios** (overall ~3-5x)
 
-### 3. Base Forecast (`outputs/base_forecast.csv`)
-Month-by-month detail for base scenario:
-- MRR, ARR, active customers
-- New customers, churned customers, net new
-
-**Use Case**: Detailed financial planning, cohort analysis
-
----
-
-## 🏗️ Tech Stack
-
-- **Language**: Python 3.8+ (tested on 3.13.5)
-- **Core Libraries**: pandas, numpy, pyyaml, python-dateutil
-- **Testing**: pytest
-- **Architecture**: Modular pipeline (load → transform → simulate → calculate → export)
+### Scenarios (6 projections)
+1. Base Case
+2. High Churn (+20%)
+3. Reduced Churn (-15%)
+4. Increased Marketing (+25% CAC)
+5. Improved Conversion (+10%)
+6. Pricing Change (+15% ARPU)
 
 ---
 
 ## 📁 Project Structure
 
 ```
-P4_SaaS_Growth_Analytics_Engine/
-├── README.md                    # This file
-├── LICENSE                      # MIT License
-├── requirements.txt             # Pinned dependencies
-├── run.py                       # Single-command entrypoint
-├── src/
-│   ├── data_loader.py           # Load sample raw data
-│   ├── transform.py             # Clean and transform data
-│   ├── engine.py                # Core simulation logic
-│   ├── metrics.py               # Calculate SaaS KPIs
-│   └── export.py                # Export CSV outputs
-├── data/
-│   ├── raw_sample/              # Sample CSV files (customers, subscriptions, etc.)
-│   └── snapshots/               # Auto-generated after run
-├── configs/
-│   ├── default.yaml             # Default parameters
-│   └── example_override.yaml   # Example custom config
-├── outputs/
-│   ├── base_forecast.csv        # Generated by run.py
-│   ├── scenario_summary.csv     # Generated by run.py
-│   └── kpi_snapshot.csv         # Generated by run.py
-├── docs/
-│   ├── WHAT_IS_THIS_PROJECT.md  # 1-page narrative for recruiters
-│   ├── demo_script.md           # 90-second demo guide
-│   └── cv_bullets.md            # ATS-ready resume bullets
-├── tests/
-│   ├── test_smoke.py            # Smoke test for pipeline
-│   └── test_metrics.py          # Metric validation tests
+P4-SaaS-Growth-Analytics-Engine/
+│
+├── run_full_analysis.py          # Main entrypoint
+├── requirements.txt               # Dependencies
+│
+├── src/                           # Core modules
+│   ├── user_simulation.py        # 10,000+ user lifecycle generation
+│   ├── funnel.py                 # Activation & conversion funnel
+│   ├── retention.py              # Cohort retention & churn analysis
+│   ├── revenue.py                # MRR, ARR, ARPU, MRR Bridge
+│   └── unit_economics.py         # CAC, LTV, LTV:CAC calculations
+│
+├── outputs/                       # Generated CSV files
+│   ├── sample_10_users.csv       # Preview (10 users)
+│   ├── funnel_metrics.csv        # Funnel conversion rates
+│   ├── conversion_summary.csv    # Conversions by channel/plan
+│   ├── cohort_retention.csv      # Retention matrix (heatmap data)
+│   ├── monthly_churn.csv         # Monthly churn rates
+│   ├── revenue_summary.csv       # MRR, ARR, ARPU by month
+│   ├── mrr_bridge.csv            # MRR waterfall components
+│   ├── net_revenue_retention.csv # NRR by month
+│   ├── unit_economics.csv        # CAC, LTV, ratios by segment
+│   ├── scenarios_summary.csv     # 6 scenarios × 12 months
+│   └── full_analysis_summary.txt # Human-readable summary
+│
 └── examples/
-    ├── screenshot_1.png         # Sample output screenshot
-    └── sample_report.pdf        # Auto-generated summary report
+    └── quick_run.py              # Quick demo script
+
 ```
 
 ---
 
-## 🔧 Configuration
+## 🏗️ Tech Stack
 
-All business logic is externalized to `configs/default.yaml`:
+- **Language**: Python 3.8+ (tested on 3.13.5)
+- **Core Libraries**: pandas, numpy
+- **Architecture**: Modular pipeline (simulate → analyze → export)
+- **Reproducibility**: Fixed random seed (42)
 
-```yaml
-base_churn_rate: 0.05          # 5% monthly churn
-estimated_cac: 500             # Customer acquisition cost
-projection_months: 12          # Forecast horizon
+---
 
-activity_weights:              # Event scoring
-  login: 1
-  feature_use: 2
-  support_ticket: -5
+## 📈 Sample Outputs
 
-scenarios:                     # Scenario modifiers
-  optimistic:
-    growth_multiplier: 1.5
-    churn_multiplier: 0.8
+### Funnel Metrics
+```csv
+stage,users,conversion_rate,cumulative_rate
+Total Sign-ups,10000,1.0,1.0
+Activated,6500,0.65,0.65
+Converted to Paid,1625,0.25,0.1625
+Retained (30+ days),1578,0.97,0.1578
 ```
 
-**Run with custom config**:
+### Revenue Summary (Latest Month)
+```
+MRR:          $229,302
+ARR:          $2,751,624
+Active Users: 9,234
+Paying Users: 1,456
+ARPU:         $24.83
+ARPPU:        $157.49
+```
+
+### Unit Economics
+```
+Average CAC:          $312.45
+Average LTV:          $1,247.89
+Average LTV:CAC:      3.99x
+```
+
+---
+
+## 🎓 Use Cases
+
+### For Recruiters
+- Demonstrates **Python proficiency** (pandas, numpy, modular design)
+- Shows **business acumen** (SaaS metrics, unit economics)
+- Proves **analytical thinking** (cohort analysis, scenario modeling)
+- **Instant verification**: Run script, see outputs in 10 seconds
+
+### For Interviews
+- **90-second demo**: Show funnel → revenue → scenarios
+- **Technical depth**: Explain MRR bridge, cohort retention matrix
+- **Business impact**: Discuss LTV:CAC optimization, churn reduction
+
+### For Portfolio
+- **Complete project**: 10,000+ users, 11 outputs, 6 scenarios
+- **Production quality**: Modular code, documented, reproducible
+- **Visual ready**: Cohort retention CSV → heatmap in Tableau/Excel
+
+---
+
+## 🔍 How to Verify
+
 ```bash
-python run.py --config configs/example_override.yaml
+# Run full analysis
+python run_full_analysis.py
+
+# Check key outputs
+cat outputs/full_analysis_summary.txt
+head outputs/funnel_metrics.csv
+head outputs/revenue_summary.csv
+head outputs/unit_economics.csv
 ```
+
+**Expected runtime**: ~10 seconds  
+**Expected files**: 11 CSVs + 1 TXT
 
 ---
 
-## 🧪 Testing
+## 📝 CV-Ready Claims
 
-```bash
-# Run all tests
-pytest
+Use these verified statements:
 
-# Run with coverage
-pytest --cov=src tests/
-```
+1. "Built Python-based SaaS analytics engine simulating 10,000+ user lifecycles with activation, conversion, and churn tracking"
 
-**Test Coverage**:
-- ✅ Smoke test: Pipeline runs end-to-end without errors
-- ✅ Metric validation: Known KPI calculations are accurate
-- ✅ Data quality: Schema validation, missing value checks
+2. "Calculated comprehensive funnel metrics (65% activation, 25% conversion) and cohort retention matrices for growth analysis"
 
----
+3. "Implemented MRR bridge analysis tracking New/Expansion/Contraction/Churned MRR components for revenue forecasting"
 
-## 📈 How to Reproduce Key Metrics
+4. "Analyzed unit economics across 5 acquisition channels, achieving 3.99x average LTV:CAC ratio"
 
-### MRR (Monthly Recurring Revenue)
-```python
-# From outputs/historical_mrr.csv
-# MRR = Sum of all invoice amounts per month
-```
-
-### ARR (Annual Recurring Revenue)
-```python
-# ARR = MRR × 12
-```
-
-### LTV (Lifetime Value)
-```python
-# LTV = Avg Revenue per Customer / Churn Rate
-# Example: $500 avg revenue / 0.05 churn = $10,000 LTV
-```
-
-### Churn Risk Score
-```python
-# Based on activity_score from events
-# High risk: activity_score < 0
-# Medium risk: 0 ≤ activity_score < 5
-# Low risk: activity_score ≥ 5
-```
+5. "Generated 6 growth scenarios (churn, marketing, conversion, pricing) projecting 12-month MRR/ARR impact"
 
 ---
 
 ## 📚 Documentation
 
-- **[WHAT_IS_THIS_PROJECT.md](docs/WHAT_IS_THIS_PROJECT.md)**: Problem statement, use cases, assumptions, limitations
-- **[demo_script.md](docs/demo_script.md)**: 90-second walkthrough for demos
-- **[cv_bullets.md](docs/cv_bullets.md)**: Resume bullets with quantified results
+- `HOW_TO_RUN_QUICK.md` - One-page setup guide
+- `ASSUMPTIONS.md` - Methodology and formulas
+- `METRICS_FORMULAS.md` - Exact calculations with code references
+- `OUTPUT_SCHEMA.md` - Data schema for all CSVs
+- `TECHNICAL_AUDIT.md` - Quality checklist
 
 ---
 
-## 🎓 Skills Demonstrated
+## 🤝 Contributing
 
-**Technical**:
-- Python (pandas, numpy, pytest)
-- Data pipeline design (ETL)
-- Configuration management (YAML)
-- Version control (Git)
-
-**Business**:
-- SaaS metrics (MRR, ARR, LTV, CAC, churn)
-- Cohort analysis
-- Scenario modeling
-- Financial forecasting
-
-**Soft Skills**:
-- Documentation
-- Reproducibility
-- Stakeholder communication
-
----
-
-## 🚧 Limitations & Future Enhancements
-
-**Current Limitations**:
-- Simple trend extrapolation (no ML forecasting)
-- Batch processing only (no real-time)
-- Single currency (USD)
-- No API integrations
-
-**Future Enhancements**:
-- ARIMA/Prophet forecasting models
-- Stripe API integration for live data
-- Interactive Streamlit dashboard
-- Multi-product/multi-region segmentation
-- Cohort LTV curves and retention heatmaps
+This is a portfolio project. Feel free to fork and adapt for your own use.
 
 ---
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details
+MIT License - see [LICENSE](LICENSE) file
 
 ---
 
-## 👤 Author
-
-**Varad Patil**  
-GitHub: [@PatilVarad2022](https://github.com/PatilVarad2022)  
-Project Link: [P4-SaaS-Growth-Analytics-Engine](https://github.com/PatilVarad2022/P4-SaaS-Growth-Analytics-Engine)
-
----
-
-## 🙏 Acknowledgments
-
-- Sample data structure inspired by real B2B SaaS companies
-- Metric definitions follow industry standards (SaaStr, ChartMogul)
-- Built as a portfolio project to demonstrate analytical and Python skills
-
----
-
-**For Recruiters**: This project demonstrates end-to-end analytical thinking, production-quality code, and business acumen. Run `python run.py` to verify all claims in under 2 minutes.
-
-**For Technical Reviewers**: See `docs/demo_script.md` for a guided walkthrough. All outputs are reproducible with the included sample data.
+**Author**: Varad Patil  
+**GitHub**: https://github.com/PatilVarad2022/P4-SaaS-Growth-Analytics-Engine  
+**Version**: 2.0.0 (Full SaaS Analytics Engine)

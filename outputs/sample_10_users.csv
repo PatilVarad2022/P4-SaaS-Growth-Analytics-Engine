@@ -1,0 +1,11 @@
+user_id,sign_up_date,acquisition_channel,initial_plan,current_plan,activated,converted_to_paid,conversion_date,num_upgrades,num_downgrades,churned,churn_date,lifetime_days,cac
+U000001,2023-01-23,organic_search,Free,Free,True,False,,0,0,False,,708,170.96
+U000002,2023-08-09,paid_ads,Free,Free,False,False,,0,0,True,2023-08-14,5,445.56
+U000003,2022-08-06,organic_search,Free,Free,True,False,,0,0,True,2022-09-23,48,210.44
+U000004,2023-03-18,sales_outbound,Free,Free,True,False,,0,0,True,2023-05-29,72,954.65
+U000005,2022-07-01,paid_ads,Free,Free,True,False,,0,0,False,,914,529.66
+U000006,2023-03-02,paid_ads,Free,Basic,True,True,2023-03-17,0,0,False,,670,446.56
+U000007,2022-10-23,sales_outbound,Free,Free,False,False,,0,0,False,,800,900.97
+U000008,2022-07-25,paid_ads,Free,Pro,True,True,2022-07-31,0,0,False,,890,405.69
+U000009,2022-07-19,paid_ads,Free,Free,True,False,,0,0,True,2022-07-26,7,499.26
+U000010,2022-10-07,paid_ads,Free,Free,False,False,,0,0,True,2022-10-08,1,509.97

@@ -1,5 +1,8 @@
 """
 User Lifecycle Simulation - Generates 10,000+ user records with complete lifecycle
+
+See docs/LOGIC.md for RFM/churn rule definitions
+See docs/SCHEMA.md for exported CSV schema (data/raw_sample/)
 """
 
 import pandas as pd

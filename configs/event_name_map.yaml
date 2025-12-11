@@ -1,0 +1,28 @@
+# Canonical Event Name Mapping
+# Format: canonical_name: [list_of_raw_variants]
+
+login:
+  - login
+  - Login
+  - user_login
+  - sign_in
+
+feature_use:
+  - feature_use
+  - FeatureUsed
+  - core_action
+
+page_view:
+  - page_view
+  - View
+  - visit
+
+export_data:
+  - export_data
+  - DataExport
+  - download_csv
+
+invite_sent:
+  - invite_sent
+  - Invite
+  - referral

@@ -23,7 +23,10 @@ def test_customer_metrics_columns():
         'recency_days',
         'frequency_180d',
         'monetary_180d',
-        'rfm_score',
+        'r_q',
+        'f_q',
+        'm_q',
+        'rfm_code',
         'churn_risk'
     ]
     

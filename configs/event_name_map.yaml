@@ -1,6 +1,3 @@
-# Canonical Event Name Mapping
-# Format: canonical_name: [list_of_raw_variants]
-
 login:
   - login
   - Login
@@ -14,7 +11,7 @@ feature_use:
 
 page_view:
   - page_view
-  - View
+  - PageView
   - visit
 
 export_data:

@@ -1,4 +1,3 @@
-
 # Schema Documentation
 
 ## customers.csv
@@ -10,8 +9,8 @@ transaction_id,customer_id,transaction_date,amount,currency,invoice_status
 TXN00000001,U000006,2023-03-17,49,USD,paid
 
 ## subscriptions.csv
-subscription_id,customer_id,start_date,end_date,status,plan_price
-SUB000006,U000006,2023-03-17,,active,49
+subscription_id,customer_id,start_date,end_date,status,plan_price,plan_name
+SUB000006,U000006,2023-03-17,,active,49,Basic
 
 ## events.csv
 event_id,customer_id,event_name,event_timestamp

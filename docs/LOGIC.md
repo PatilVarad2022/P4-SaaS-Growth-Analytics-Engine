@@ -1,5 +1,8 @@
 # Business Logic & Definitions
 
+## Reference Date
+See `docs/REFERENCE_DATE.md` (Currently 2024-12-31).
+
 ## KPI Definitions
 
 | Metric | Formula | Code Reference |
@@ -13,12 +16,13 @@
 ## Segmentation Logic
 
 ### RFM Analysis
-- **Date Reference**: Latest Snapshot Date (see `docs/REFERENCE_DATE.md`)
+- **Date Reference**: Latest Snapshot Date
 - **Lookback Window**: 180 days for Frequency/Monetary
 - **Scoring Method**: Quintiles (1-5)
-  - **Recency**: 5 = Most recent, 1 = Least recent
-  - **Frequency**: 5 = Most frequent, 1 = Least frequent
-  - **Monetary**: 5 = Highest spend, 1 = Lowest spend
+  - **r_q (Recency)**: 5 = Most recent, 1 = Least recent
+  - **f_q (Frequency)**: 5 = Most frequent, 1 = Least frequent
+  - **m_q (Monetary)**: 5 = Highest spend, 1 = Lowest spend
+- **Output Representation**: `rfm_code` (e.g. "5-4-3")
 - **Implementation**: `src/metrics.py::compute_rfm`
 
 ### Churn Risk Assessment

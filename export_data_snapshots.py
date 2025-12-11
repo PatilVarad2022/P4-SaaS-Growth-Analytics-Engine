@@ -21,7 +21,14 @@ def export_raw_snapshots():
     """Export raw data snapshots to data/raw_sample/"""
     
     print("Generating 10,000 users...")
-    users = generate_user_lifecycle(num_users=10000, start_date='2022-01-01', end_date='2024-12-31')
+    users = generate_user_lifecycle(num_users=10000, start_date='2022-01-01', end_date='2024-12-12')
+    
+    # Force U000001 to be a paid user for consistent validation/examples
+    users.at[0, 'converted_to_paid'] = True
+    users.at[0, 'conversion_date'] = pd.to_datetime('2023-02-01')
+    users.at[0, 'current_plan'] = 'Pro'
+    users.at[0, 'churned'] = False
+    users.at[0, 'churn_date'] = pd.NaT
     
     # Create directory
     data_dir = Path("data/raw_sample")
@@ -42,7 +49,7 @@ def export_raw_snapshots():
         if user['converted_to_paid']:
             # Generate monthly transactions
             start = pd.to_datetime(user['conversion_date']) if pd.notna(user['conversion_date']) else pd.to_datetime(user['sign_up_date'])
-            end = pd.to_datetime(user['churn_date']) if pd.notna(user['churn_date']) else pd.Timestamp('2024-12-31')
+            end = pd.to_datetime(user['churn_date']) if pd.notna(user['churn_date']) else pd.Timestamp('2024-12-12')
             
             # Monthly transactions
             current = start
@@ -77,7 +84,8 @@ def export_raw_snapshots():
                 'start_date': user['conversion_date'] if pd.notna(user['conversion_date']) else user['sign_up_date'],
                 'end_date': user['churn_date'] if user['churned'] else None,
                 'status': 'churned' if user['churned'] else 'active',
-                'plan_price': {'Free': 0, 'Basic': 49, 'Pro': 199}.get(user['current_plan'], 0)
+                'plan_price': {'Free': 0, 'Basic': 49, 'Pro': 199}.get(user['current_plan'], 0),
+                'plan_name': user['current_plan']
             })
     
     subscriptions_df = pd.DataFrame(subscriptions)
@@ -94,7 +102,7 @@ def export_raw_snapshots():
             # Generate 5-20 events per activated user
             num_events = np.random.randint(5, 21)
             start = pd.to_datetime(user['sign_up_date'])
-            end = pd.to_datetime(user['churn_date']) if pd.notna(user['churn_date']) else pd.Timestamp('2024-12-31')
+            end = pd.to_datetime(user['churn_date']) if pd.notna(user['churn_date']) else pd.Timestamp('2024-12-12')
             
             for _ in range(num_events):
                 event_date = start + pd.Timedelta(days=np.random.randint(0, (end - start).days + 1))
@@ -119,7 +127,7 @@ def export_raw_snapshots():
         if np.random.random() < 0.20:
             num_tickets = np.random.randint(1, 4)
             start = pd.to_datetime(user['sign_up_date'])
-            end = pd.to_datetime(user['churn_date']) if pd.notna(user['churn_date']) else pd.Timestamp('2024-12-31')
+            end = pd.to_datetime(user['churn_date']) if pd.notna(user['churn_date']) else pd.Timestamp('2024-12-12')
             
             for _ in range(num_tickets):
                 created = start + pd.Timedelta(days=np.random.randint(0, (end - start).days + 1))

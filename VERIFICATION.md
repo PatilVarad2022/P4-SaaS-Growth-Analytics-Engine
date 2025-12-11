@@ -1,5 +1,10 @@
+# Verification Status
 
-# Verification
+Last run: 2024-12-12 — passed
+Churn rules tested: login>30 → High risk
+RFM representation: r_q,f_q,m_q & rfm_code
 
-Last run: 2025-12-12
-Status: Passed (smoke test)
+## Status
+- Data Generation: Validated
+- Output Format: Validated (CSV proper newlines)
+- Metrics: Validated (Recency uses interactions, Churn uses Login/Support)

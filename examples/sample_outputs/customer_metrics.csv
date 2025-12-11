@@ -1,4 +1,7 @@
-customer_id,recency_days,frequency_180d,monetary_180d,rfm_score,churn_risk
-U000001,45,12,588,High,Low
-U000002,75,3,147,Medium,Medium
-U000003,120,1,49,Low,High
+customer_id,recency_days,frequency_180d,monetary_180d,r_q,f_q,m_q,rfm_code,churn_risk
+U000001,11,23.0,4577.0,5,5,5,5-5-5,High
+U000003,816,0.0,0.0,1,1,1,1-1-1,High
+U000004,572,0.0,0.0,2,1,1,2-1-1,High
+U000005,120,0.0,0.0,3,1,1,3-1-1,High
+U000006,2,22.0,1078.0,5,5,5,5-5-5,High
+U000008,14,29.0,5771.0,5,5,5,5-5-5,High
